@@ -43,7 +43,7 @@ begin
             begin
               Linha := Arquivo[i];
               for j := 0 to Length(Linha) do
-                if Linha[j] in ['a' .. 'z', 'A' .. 'Z'] then
+                if Linha[j] in ['a' .. 'z', 'A' .. 'Z', '1' .. '2,147,483,647'] then
                   Inc(cont);
             end;
             NPalavras.Text := IntToStr(cont);
@@ -51,4 +51,4 @@ begin
 
 end;
 
-end;
+end.

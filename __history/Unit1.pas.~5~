@@ -11,7 +11,7 @@ type
     mmoRecebe: TMemo;
     AbrirPasta: TOpenTextFileDialog;
     btnCarregar: TButton;
-    NPalavras: TEdit;
+    Edit1: TEdit;
     procedure btnCarregarClick(Sender: TObject);
   private
     { Private declarations }
@@ -27,28 +27,15 @@ implementation
 {$R *.dfm}
 
 procedure TForm1.btnCarregarClick(Sender: TObject);
-var
-  Arquivo: TStringList;
-  Linha: String;
-  i, j, cont: integer;
+var i:Integer;
+
 begin
-    Arquivo := TStringList.Create;
-    cont:= 0;
     if AbrirPasta.execute then
         begin
             mmoRecebe.Lines.Clear;
-            Arquivo.LoadFromFile(AbrirPasta.FileName);
-
-            for i := 0 to Arquivo.Count - 1 do
-            begin
-              Linha := Arquivo[i];
-              for j := 0 to Length(Linha) do
-                if Linha[j] in ['a' .. 'z', 'A' .. 'Z'] then
-                  Inc(cont);
-            end;
-            NPalavras.Text := IntToStr(cont);
+            mmoRecebe.Lines.LoadFromFile(AbrirPasta.FileName);
         end;
 
 end;
 
-end;
+end.

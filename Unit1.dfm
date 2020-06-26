@@ -31,13 +31,14 @@ object Form1: TForm1
     TabOrder = 1
     OnClick = btnCarregarClick
   end
-  object Edit1: TEdit
+  object NPalavras: TEdit
     Left = 319
     Top = 18
     Width = 90
     Height = 21
+    Alignment = taCenter
     TabOrder = 2
-    Text = 'Edit1'
+    Text = 'NPalavras'
   end
   object AbrirPasta: TOpenTextFileDialog
     Filter = '|*.txt'
