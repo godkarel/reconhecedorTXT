@@ -39,18 +39,16 @@ begin
             mmoRecebe.Lines.Clear;
             Arquivo.LoadFromFile(AbrirPasta.FileName);
 
-
             for i := 0 to Arquivo.Count - 1 do
             begin
               Linha := Arquivo[i];
               for j := 0 to Length(Linha) do
-                if Linha[j] in ['0'..'9', 'a' .. 'z', 'A' .. 'Z', 'á', 'à', 'ã', 'Á', 'À', 'Ã', 'è', 'é', 'É', 'È',
-                'í', 'ì', 'Í', 'Ì', 'ó', 'ò', 'õ', 'Ó', 'Ò', 'Õ', 'ú', 'ù', 'Ú', 'Ù', 'â', 'ê', 'î' ,'ô', 'û', 'Â', 'Ê', 'Î', 'Ô' ,'Û'] then
+                if Linha[j] in ['a' .. 'z', 'A' .. 'Z'] then
                   Inc(cont);
             end;
             NPalavras.Text := IntToStr(cont);
         end;
-   ShowMessage(#$2694)
+
 end;
 
-end.
+end;
