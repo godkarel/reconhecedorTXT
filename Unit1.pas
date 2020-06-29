@@ -11,8 +11,13 @@ type
     mmoRecebe: TMemo;
     AbrirPasta: TOpenTextFileDialog;
     btnCarregar: TButton;
-    NPalavras: TEdit;
+    edtNPalavras: TEdit;
+    edtusculo: TEdit;
+    btnMaiusculo: TButton;
+    Button1: TButton;
     procedure btnCarregarClick(Sender: TObject);
+    procedure btnMaiusculoClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -31,14 +36,16 @@ var
   Arquivo: TStringList;
   Linha: String;
   i, j, cont: integer;
+
+
 begin
     Arquivo := TStringList.Create;
     cont:= 0;
     if AbrirPasta.execute then
         begin
             mmoRecebe.Lines.Clear;
+            mmoRecebe.Lines.LoadFromFile(AbrirPasta.FileName);
             Arquivo.LoadFromFile(AbrirPasta.FileName);
-
 
             for i := 0 to Arquivo.Count - 1 do
             begin
@@ -48,9 +55,25 @@ begin
                 'í', 'ì', 'Í', 'Ì', 'ó', 'ò', 'õ', 'Ó', 'Ò', 'Õ', 'ú', 'ù', 'Ú', 'Ù', 'â', 'ê', 'î' ,'ô', 'û', 'Â', 'Ê', 'Î', 'Ô' ,'Û'] then
                   Inc(cont);
             end;
-            NPalavras.Text := IntToStr(cont);
+            edtNPalavras.Text := IntToStr(cont);
         end;
-   ShowMessage(#$2694)
+
+end;
+
+procedure TForm1.btnMaiusculoClick(Sender: TObject);
+var
+  Conteudo : String;
+begin
+    Conteudo := edtusculo.Text;
+    edtusculo.Text := UpperCase(Conteudo);
+end;
+
+procedure TForm1.Button1Click(Sender: TObject);
+var
+  Conteudo : String;
+begin
+    Conteudo := edtusculo.Text;
+    edtusculo.Text := LowerCase(Conteudo);
 end;
 
 end.

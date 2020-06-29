@@ -2,8 +2,8 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = 'Form1'
-  ClientHeight = 407
-  ClientWidth = 457
+  ClientHeight = 565
+  ClientWidth = 428
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,6 +20,8 @@ object Form1: TForm1
     Height = 329
     Lines.Strings = (
       'mmoRecebe')
+    ReadOnly = True
+    ScrollBars = ssVertical
     TabOrder = 0
   end
   object btnCarregar: TButton
@@ -31,14 +33,40 @@ object Form1: TForm1
     TabOrder = 1
     OnClick = btnCarregarClick
   end
-  object NPalavras: TEdit
+  object edtNPalavras: TEdit
     Left = 319
     Top = 18
     Width = 90
     Height = 21
     Alignment = taCenter
     TabOrder = 2
-    Text = 'NPalavras'
+    Text = 'edtNPalavras'
+  end
+  object edtusculo: TEdit
+    Left = 48
+    Top = 416
+    Width = 201
+    Height = 21
+    TabOrder = 3
+    Text = 'edtusculo'
+  end
+  object btnMaiusculo: TButton
+    Left = 255
+    Top = 414
+    Width = 75
+    Height = 25
+    Caption = 'Maiusculo'
+    TabOrder = 4
+    OnClick = btnMaiusculoClick
+  end
+  object Button1: TButton
+    Left = 336
+    Top = 414
+    Width = 75
+    Height = 25
+    Caption = 'Minusculo'
+    TabOrder = 5
+    OnClick = Button1Click
   end
   object AbrirPasta: TOpenTextFileDialog
     Filter = '|*.txt'
