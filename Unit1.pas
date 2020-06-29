@@ -65,15 +65,20 @@ var
   Conteudo : String;
 begin
     Conteudo := edtusculo.Text;
+    UTF8Encode(Conteudo);
     edtusculo.Text := UpperCase(Conteudo);
+
 end;
 
 procedure TForm1.Button1Click(Sender: TObject);
 var
   Conteudo : String;
+  variavel : TBytes ;
 begin
     Conteudo := edtusculo.Text;
+    variavel := TEncoding.UTF8.GetBytes(Conteudo);
     edtusculo.Text := LowerCase(Conteudo);
+    edtusculo.Text := ByteToString(variavel);
 end;
 
 end.

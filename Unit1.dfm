@@ -25,7 +25,7 @@ object Form1: TForm1
     TabOrder = 0
   end
   object btnCarregar: TButton
-    Left = 144
+    Left = 96
     Top = 8
     Width = 169
     Height = 42
@@ -34,13 +34,13 @@ object Form1: TForm1
     OnClick = btnCarregarClick
   end
   object edtNPalavras: TEdit
-    Left = 319
+    Left = 271
     Top = 18
-    Width = 90
+    Width = 138
     Height = 21
     Alignment = taCenter
     TabOrder = 2
-    Text = 'edtNPalavras'
+    Text = 'Numero de Palavras'
   end
   object edtusculo: TEdit
     Left = 48
@@ -48,7 +48,7 @@ object Form1: TForm1
     Width = 201
     Height = 21
     TabOrder = 3
-    Text = 'edtusculo'
+    Text = 'Digite aqui'
   end
   object btnMaiusculo: TButton
     Left = 255
