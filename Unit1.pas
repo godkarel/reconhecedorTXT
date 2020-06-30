@@ -15,9 +15,11 @@ type
     edtusculo: TEdit;
     btnMaiusculo: TButton;
     Button1: TButton;
+    btnArquivo: TButton;
     procedure btnCarregarClick(Sender: TObject);
     procedure btnMaiusculoClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure btnArquivoClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -30,6 +32,8 @@ var
 implementation
 
 {$R *.dfm}
+
+
 
 procedure TForm1.btnCarregarClick(Sender: TObject);
 var
@@ -60,6 +64,20 @@ begin
 
 end;
 
+procedure TForm1.btnArquivoClick(Sender: TObject);
+var
+Arquivo: file of Byte;
+ArquivoTamanho: Longint;
+begin
+if AbrirPasta.Execute then
+begin
+AssignFile(Arquivo, AbrirPasta.FileName);
+Reset(Arquivo);
+ArquivoTamanho := FileSize(Arquivo);
+ShowMessage (IntToStr (FileSize (Arquivo)) + ' Bytes');
+end;
+end;
+
 procedure TForm1.btnMaiusculoClick(Sender: TObject);
 var
   Conteudo : String;
@@ -67,7 +85,6 @@ begin
     Conteudo := edtusculo.Text;
     UTF8Encode(Conteudo);
     edtusculo.Text := UpperCase(Conteudo);
-
 end;
 
 procedure TForm1.Button1Click(Sender: TObject);
@@ -78,7 +95,6 @@ begin
     Conteudo := edtusculo.Text;
     variavel := TEncoding.UTF8.GetBytes(Conteudo);
     edtusculo.Text := LowerCase(Conteudo);
-    edtusculo.Text := ByteToString(variavel);
 end;
 
 end.

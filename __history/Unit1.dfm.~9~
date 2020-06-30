@@ -2,8 +2,8 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = 'Form1'
-  ClientHeight = 569
-  ClientWidth = 444
+  ClientHeight = 565
+  ClientWidth = 428
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -67,15 +67,6 @@ object Form1: TForm1
     Caption = 'Minusculo'
     TabOrder = 5
     OnClick = Button1Click
-  end
-  object btnArquivo: TButton
-    Left = 48
-    Top = 456
-    Width = 121
-    Height = 25
-    Caption = 'Tamanho do Arquivo'
-    TabOrder = 6
-    OnClick = btnArquivoClick
   end
   object AbrirPasta: TOpenTextFileDialog
     Filter = '|*.txt'
