@@ -18,14 +18,12 @@ object Form1: TForm1
     Top = 56
     Width = 361
     Height = 329
-    Lines.Strings = (
-      'mmoRecebe')
-    ReadOnly = True
+    Alignment = taCenter
     ScrollBars = ssVertical
     TabOrder = 0
   end
   object btnCarregar: TButton
-    Left = 168
+    Left = 151
     Top = 18
     Width = 97
     Height = 21
@@ -77,23 +75,23 @@ object Form1: TForm1
     TabOrder = 6
     OnClick = btnArquivoClick
   end
-  object Save: TButton
+  object btnSave: TButton
     Left = 48
     Top = 18
     Width = 97
     Height = 21
     Caption = 'SALVAR'
     TabOrder = 7
-    OnClick = SaveClick
+    OnClick = btnSaveClick
   end
   object AbrirPasta: TOpenTextFileDialog
     Filter = '|*.txt'
     Options = [ofHideReadOnly, ofAllowMultiSelect, ofEnableSizing]
     Left = 16
-    Top = 120
+    Top = 136
   end
   object SalvarArquivo: TSaveDialog
-    Filter = 'Arquivo|*.txt'
+    Filter = '|*.txt'
     Left = 16
     Top = 88
   end

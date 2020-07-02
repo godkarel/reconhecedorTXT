@@ -16,13 +16,13 @@ type
     btnMaiusculo: TButton;
     Button1: TButton;
     btnArquivo: TButton;
+    btnSave: TButton;
     SalvarArquivo: TSaveDialog;
-    Save: TButton;
     procedure btnCarregarClick(Sender: TObject);
     procedure btnMaiusculoClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure btnArquivoClick(Sender: TObject);
-    procedure SaveClick(Sender: TObject);
+    procedure btnSaveClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -50,10 +50,11 @@ begin
     cont:= 0;
     if AbrirPasta.execute then
         begin
+
             mmoRecebe.Lines.Clear;
             mmoRecebe.Lines.LoadFromFile(AbrirPasta.FileName);
             Arquivo.LoadFromFile(AbrirPasta.FileName);
-
+            btnSave.Enabled := true;
             for i := 0 to Arquivo.Count - 1 do
             begin
               Linha := Arquivo[i];
@@ -100,18 +101,28 @@ begin
     edtusculo.Text := LowerCase(Conteudo);
 end;
 
-procedure TForm1.SaveClick(Sender: TObject);
+procedure TForm1.btnSaveClick(Sender: TObject);
 var
-Arq: TextFile; 
+Arq: TextFile;
+i : Integer;
 begin
+  i := 1;
   if SalvarArquivo.Execute then
     if trim(SalvarArquivo.FileName) <> '' then
     begin
       AssignFile(Arq,SalvarArquivo.FileName);
       if FileExists(SalvarArquivo.FileName) then
-      Append(Arq)
+        Append(Arq)
       else
-      Rewrite(Arq);  
+        Rewrite(Arq);
+
+
+      while not i = mmoRecebe.Lines.Count do
+      begin
+      Writeln(Arq,mmoRecebe.Lines.Strings[i]);
+      inc(i)
+      end;
+      CloseFile(Arq);
     end;
 
 end;
