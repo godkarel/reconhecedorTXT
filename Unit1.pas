@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtDlgs;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Unit2, Vcl.ExtDlgs;
 
 type
   TForm1 = class(TForm)
@@ -18,11 +18,13 @@ type
     btnArquivo: TButton;
     btnSave: TButton;
     SalvarArquivo: TSaveDialog;
+    btnNovoForm: TButton;
     procedure btnCarregarClick(Sender: TObject);
     procedure btnMaiusculoClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure btnArquivoClick(Sender: TObject);
     procedure btnSaveClick(Sender: TObject);
+    procedure btnNovoFormClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -91,6 +93,11 @@ begin
     edtusculo.Text := UpperCase(Conteudo);
 end;
 
+procedure TForm1.btnNovoFormClick(Sender: TObject);
+begin
+  Form2.show
+end;
+
 procedure TForm1.Button1Click(Sender: TObject);
 var
   Conteudo : String;
@@ -117,10 +124,10 @@ begin
         Rewrite(Arq);
 
 
-      while not i = mmoRecebe.Lines.Count do
+      while not ( i = mmoRecebe.Lines.Count ) do
       begin
       Writeln(Arq,mmoRecebe.Lines.Strings[i]);
-      inc(i)
+      i := i + 1;
       end;
       CloseFile(Arq);
     end;

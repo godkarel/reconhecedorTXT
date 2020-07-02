@@ -84,6 +84,15 @@ object Form1: TForm1
     TabOrder = 7
     OnClick = btnSaveClick
   end
+  object btnNovoForm: TButton
+    Left = 48
+    Top = 504
+    Width = 145
+    Height = 41
+    Caption = 'Novo Form'
+    TabOrder = 8
+    OnClick = btnNovoFormClick
+  end
   object AbrirPasta: TOpenTextFileDialog
     Filter = '|*.txt'
     Options = [ofHideReadOnly, ofAllowMultiSelect, ofEnableSizing]
