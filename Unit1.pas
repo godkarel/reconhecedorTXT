@@ -16,10 +16,13 @@ type
     btnMaiusculo: TButton;
     Button1: TButton;
     btnArquivo: TButton;
+    SalvarArquivo: TSaveDialog;
+    Save: TButton;
     procedure btnCarregarClick(Sender: TObject);
     procedure btnMaiusculoClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure btnArquivoClick(Sender: TObject);
+    procedure SaveClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -95,6 +98,22 @@ begin
     Conteudo := edtusculo.Text;
     variavel := TEncoding.UTF8.GetBytes(Conteudo);
     edtusculo.Text := LowerCase(Conteudo);
+end;
+
+procedure TForm1.SaveClick(Sender: TObject);
+var
+Arq: TextFile; 
+begin
+  if SalvarArquivo.Execute then
+    if trim(SalvarArquivo.FileName) <> '' then
+    begin
+      AssignFile(Arq,SalvarArquivo.FileName);
+      if FileExists(SalvarArquivo.FileName) then
+      Append(Arq)
+      else
+      Rewrite(Arq);  
+    end;
+
 end;
 
 end.

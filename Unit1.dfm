@@ -25,10 +25,10 @@ object Form1: TForm1
     TabOrder = 0
   end
   object btnCarregar: TButton
-    Left = 96
-    Top = 8
-    Width = 169
-    Height = 42
+    Left = 168
+    Top = 18
+    Width = 97
+    Height = 21
     Caption = 'CARREGAR'
     TabOrder = 1
     OnClick = btnCarregarClick
@@ -77,10 +77,24 @@ object Form1: TForm1
     TabOrder = 6
     OnClick = btnArquivoClick
   end
+  object Save: TButton
+    Left = 48
+    Top = 18
+    Width = 97
+    Height = 21
+    Caption = 'SALVAR'
+    TabOrder = 7
+    OnClick = SaveClick
+  end
   object AbrirPasta: TOpenTextFileDialog
     Filter = '|*.txt'
     Options = [ofHideReadOnly, ofAllowMultiSelect, ofEnableSizing]
-    Left = 64
-    Top = 8
+    Left = 16
+    Top = 120
+  end
+  object SalvarArquivo: TSaveDialog
+    Filter = 'Arquivo|*.txt'
+    Left = 16
+    Top = 88
   end
 end

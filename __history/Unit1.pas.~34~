@@ -16,13 +16,10 @@ type
     btnMaiusculo: TButton;
     Button1: TButton;
     btnArquivo: TButton;
-    SalvarArquivo: TSaveDialog;
-    Save: TButton;
     procedure btnCarregarClick(Sender: TObject);
     procedure btnMaiusculoClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure btnArquivoClick(Sender: TObject);
-    procedure SaveClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -58,8 +55,8 @@ begin
             begin
               Linha := Arquivo[i];
               for j := 0 to Length(Linha) do
-                if Linha[j] in ['0'..'9', 'a' .. 'z', 'A' .. 'Z', '√°', '√†', '√£', '√Å', '√Ä', '√É', '√®', '√©', '√â', '√à',
-                '√≠', '√¨', '√ç', '√å', '√≥', '√≤', '√µ', '√ì', '√í', '√ï', '√∫', '√π', '√ö', '√ô', '√¢', '√™', '√Æ' ,'√¥', '√ª', '√Ç', '√ä', '√é', '√î' ,'√õ'] then
+                if Linha[j] in ['0'..'9', 'a' .. 'z', 'A' .. 'Z', '·', '‡', '„', '¡', '¿', '√', 'Ë', 'È', '…', '»',
+                'Ì', 'Ï', 'Õ', 'Ã', 'Û', 'Ú', 'ı', '”', '“', '’', '˙', '˘', '⁄', 'Ÿ', '‚', 'Í', 'Ó' ,'Ù', '˚', '¬', ' ', 'Œ', '‘' ,'€'] then
                   Inc(cont);
             end;
             edtNPalavras.Text := IntToStr(cont);
@@ -98,28 +95,6 @@ begin
     Conteudo := edtusculo.Text;
     variavel := TEncoding.UTF8.GetBytes(Conteudo);
     edtusculo.Text := LowerCase(Conteudo);
-end;
-
-procedure TForm1.SaveClick(Sender: TObject);
-var
-Arq: TextFile;
-begin
-  ii := 1;
-  if SalvarArquivo.Execute then
-    if trim(SalvarArquivo.FileName) <> '' then
-    begin
-      AssignFile(Arq,SalvarArquivo.FileName);
-      if FileExists(SalvarArquivo.FileName) then
-      Append(Arq);
-      else
-      Rewrite(Arq);
-      while not (ii = Arq,mmoRecebe.Lines.Count) do
-      
-      if (Arq,mmoRecebe.Lines.Count);
-
-
-    end;
-
 end;
 
 end.
