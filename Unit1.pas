@@ -119,7 +119,7 @@ begin
     begin
       AssignFile(Arq,SalvarArquivo.FileName);
       if FileExists(SalvarArquivo.FileName) then
-        Append(Arq)
+        Append(Arq);
       else
         Rewrite(Arq);
 
@@ -127,10 +127,11 @@ begin
       while not ( i = mmoRecebe.Lines.Count ) do
       begin
       Writeln(Arq,mmoRecebe.Lines.Strings[i]);
-      i := i + 1;
+      inc(i);
       end;
       CloseFile(Arq);
     end;
+
 
 end;
 

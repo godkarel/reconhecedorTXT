@@ -100,7 +100,7 @@ object Form1: TForm1
     Top = 136
   end
   object SalvarArquivo: TSaveDialog
-    Filter = '|*.txt'
+    Filter = 'arquivo.txt|*.txt'
     Left = 16
     Top = 88
   end
