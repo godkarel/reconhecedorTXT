@@ -10,6 +10,8 @@ type
   TForm2 = class(TForm)
     mmoSalva: TMemo;
     btnSalva: TButton;
+    Save: TSaveDialog;
+    procedure btnSalvaClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -22,5 +24,13 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TForm2.btnSalvaClick(Sender: TObject);
+begin
+  if Save.Execute then
+  begin
+    mmoSalva.Lines.SaveToFile(Save.FileName);
+  end;
+end;
 
 end.

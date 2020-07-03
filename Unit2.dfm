@@ -24,8 +24,6 @@ object Form2: TForm2
     Font.Height = -21
     Font.Name = 'Trebuchet MS'
     Font.Style = []
-    Lines.Strings = (
-      'mmoSalva')
     ParentFont = False
     TabOrder = 0
   end
@@ -42,5 +40,11 @@ object Form2: TForm2
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 1
+    OnClick = btnSalvaClick
+  end
+  object Save: TSaveDialog
+    Filter = '|*.txt'
+    Left = 16
+    Top = 88
   end
 end
