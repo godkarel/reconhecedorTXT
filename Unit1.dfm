@@ -42,7 +42,7 @@ object Form1: TForm1
   end
   object edtusculo: TEdit
     Left = 48
-    Top = 416
+    Top = 446
     Width = 201
     Height = 21
     TabOrder = 3
@@ -50,7 +50,7 @@ object Form1: TForm1
   end
   object btnMaiusculo: TButton
     Left = 255
-    Top = 414
+    Top = 444
     Width = 75
     Height = 25
     Caption = 'Maiusculo'
@@ -59,7 +59,7 @@ object Form1: TForm1
   end
   object Button1: TButton
     Left = 336
-    Top = 414
+    Top = 444
     Width = 75
     Height = 25
     Caption = 'Minusculo'
@@ -68,7 +68,7 @@ object Form1: TForm1
   end
   object btnArquivo: TButton
     Left = 48
-    Top = 456
+    Top = 391
     Width = 121
     Height = 25
     Caption = 'Tamanho do Arquivo'
@@ -85,13 +85,22 @@ object Form1: TForm1
     OnClick = btnSaveClick
   end
   object btnNovoForm: TButton
-    Left = 48
-    Top = 504
-    Width = 145
-    Height = 41
+    Left = 336
+    Top = 528
+    Width = 100
+    Height = 33
     Caption = 'Novo Form'
     TabOrder = 8
     OnClick = btnNovoFormClick
+  end
+  object Button2: TButton
+    Left = 48
+    Top = 480
+    Width = 145
+    Height = 25
+    Caption = 'Aumentar Primeira Letra'
+    TabOrder = 9
+    OnClick = Button2Click
   end
   object AbrirPasta: TOpenTextFileDialog
     Filter = '|*.txt'

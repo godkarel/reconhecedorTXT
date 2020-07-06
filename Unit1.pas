@@ -19,14 +19,19 @@ type
     btnSave: TButton;
     SalvarArquivo: TSaveDialog;
     btnNovoForm: TButton;
+    Button2: TButton;
     procedure btnCarregarClick(Sender: TObject);
     procedure btnMaiusculoClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure btnArquivoClick(Sender: TObject);
     procedure btnSaveClick(Sender: TObject);
     procedure btnNovoFormClick(Sender: TObject);
+        function AumentaTexto(Str: string): string;
+    procedure Button2Click(Sender: TObject);
   private
     { Private declarations }
+
+
   public
     { Public declarations }
   end;
@@ -108,6 +113,16 @@ begin
     edtusculo.Text := LowerCase(Conteudo);
 end;
 
+procedure TForm1.Button2Click(Sender: TObject);
+var
+   TextoAumentado: string;
+begin
+     TextoAumentado := edtusculo.Text;
+     AumentaTexto(TextoAumentado);
+     TextoAumentado := AumentaTexto(TextoAumentado);
+     edtusculo.Text := TextoAumentado;
+end;
+
 procedure TForm1.btnSaveClick(Sender: TObject);
 var
 Arq: TextFile;
@@ -119,7 +134,7 @@ begin
     begin
       AssignFile(Arq,SalvarArquivo.FileName);
       if FileExists(SalvarArquivo.FileName) then
-        Append(Arq);
+        Append(Arq)
       else
         Rewrite(Arq);
 
@@ -129,10 +144,35 @@ begin
       Writeln(Arq,mmoRecebe.Lines.Strings[i]);
       inc(i);
       end;
-      CloseFile(Arq);
+      System.Close(Arq);
     end;
 
 
 end;
+
+function TForm1.AumentaTexto(Str: string): string;
+var
+  i: integer;
+  esp: boolean;
+begin
+  str := LowerCase(Trim(Str));
+  for i := 1 to Length(str) do
+  begin
+    if i = 1 then
+      str[i] := UpCase(str[i])
+    else
+      begin
+        if i <> Length(str) then
+        begin
+          esp := (str[i] = ' ');
+          if esp then
+            str[i+1] := UpCase(str[i+1]);
+        end;
+      end;
+  end;
+  Result := Str;
+end;
+
+
 
 end.

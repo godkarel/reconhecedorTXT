@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtDlgs;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Unit2, Vcl.ExtDlgs;
 
 type
   TForm1 = class(TForm)
@@ -15,9 +15,17 @@ type
     edtusculo: TEdit;
     btnMaiusculo: TButton;
     Button1: TButton;
+    btnArquivo: TButton;
+    btnSave: TButton;
+    SalvarArquivo: TSaveDialog;
+    btnNovoForm: TButton;
+    function TForm1.AumentarPrimeiraLetra();
     procedure btnCarregarClick(Sender: TObject);
     procedure btnMaiusculoClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure btnArquivoClick(Sender: TObject);
+    procedure btnSaveClick(Sender: TObject);
+    procedure btnNovoFormClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -31,6 +39,8 @@ implementation
 
 {$R *.dfm}
 
+
+
 procedure TForm1.btnCarregarClick(Sender: TObject);
 var
   Arquivo: TStringList;
@@ -43,10 +53,11 @@ begin
     cont:= 0;
     if AbrirPasta.execute then
         begin
+
             mmoRecebe.Lines.Clear;
             mmoRecebe.Lines.LoadFromFile(AbrirPasta.FileName);
             Arquivo.LoadFromFile(AbrirPasta.FileName);
-
+            btnSave.Enabled := true;
             for i := 0 to Arquivo.Count - 1 do
             begin
               Linha := Arquivo[i];
@@ -60,6 +71,20 @@ begin
 
 end;
 
+procedure TForm1.btnArquivoClick(Sender: TObject);
+var
+Arquivo: file of Byte;
+ArquivoTamanho: Longint;
+begin
+if AbrirPasta.Execute then
+begin
+AssignFile(Arquivo, AbrirPasta.FileName);
+Reset(Arquivo);
+ArquivoTamanho := FileSize(Arquivo);
+ShowMessage (IntToStr (FileSize (Arquivo)) + ' Bytes');
+end;
+end;
+
 procedure TForm1.btnMaiusculoClick(Sender: TObject);
 var
   Conteudo : String;
@@ -67,16 +92,51 @@ begin
     Conteudo := edtusculo.Text;
     UTF8Encode(Conteudo);
     edtusculo.Text := UpperCase(Conteudo);
+end;
 
+procedure TForm1.btnNovoFormClick(Sender: TObject);
+begin
+  Form2.show
 end;
 
 procedure TForm1.Button1Click(Sender: TObject);
 var
   Conteudo : String;
+  variavel : TBytes ;
 begin
     Conteudo := edtusculo.Text;
-    TEncoding.UTF8.GetBytes(edtusculo);
+    variavel := TEncoding.UTF8.GetBytes(Conteudo);
     edtusculo.Text := LowerCase(Conteudo);
 end;
+
+procedure TForm1.btnSaveClick(Sender: TObject);
+var
+Arq: TextFile;
+i : Integer;
+begin
+  i := 1;
+  if SalvarArquivo.Execute then
+    if trim(SalvarArquivo.FileName) <> '' then
+    begin
+      AssignFile(Arq,SalvarArquivo.FileName);
+      if FileExists(SalvarArquivo.FileName) then
+        Append(Arq)
+      else
+        Rewrite(Arq);
+
+
+      while not ( i = mmoRecebe.Lines.Count ) do
+      begin
+      Writeln(Arq,mmoRecebe.Lines.Strings[i]);
+      inc(i);
+      end;
+      System.Close(Arq);
+    end;
+
+
+end;
+
+function TForm1.AumentarPrimeiraLetra();
+
 
 end.
