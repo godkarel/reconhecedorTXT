@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtDlgs;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Unit2, Vcl.ExtDlgs;
 
 type
   TForm1 = class(TForm)
@@ -17,14 +17,21 @@ type
     Button1: TButton;
     btnArquivo: TButton;
     btnSave: TButton;
-    SalvarArquivo: TSaveDialog;
+    sdgSalvarArquivo: TSaveDialog;
+    btnNovoForm: TButton;
+    Button2: TButton;
     procedure btnCarregarClick(Sender: TObject);
     procedure btnMaiusculoClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure btnArquivoClick(Sender: TObject);
     procedure btnSaveClick(Sender: TObject);
+    procedure btnNovoFormClick(Sender: TObject);
+        function AumentaTexto(Str: string): string;
+    procedure Button2Click(Sender: TObject);
   private
     { Private declarations }
+
+
   public
     { Public declarations }
   end;
@@ -86,9 +93,14 @@ procedure TForm1.btnMaiusculoClick(Sender: TObject);
 var
   Conteudo : String;
 begin
-    Conteudo := edtusculo.Text;
-    UTF8Encode(Conteudo);
-    edtusculo.Text := UpperCase(Conteudo);
+  Conteudo := edtusculo.Text;
+  UTF8Encode(Conteudo);
+  edtusculo.Text := UpperCase(Conteudo);
+end;
+
+procedure TForm1.btnNovoFormClick(Sender: TObject);
+begin
+  Form2.show
 end;
 
 procedure TForm1.Button1Click(Sender: TObject);
@@ -96,9 +108,18 @@ var
   Conteudo : String;
   variavel : TBytes ;
 begin
-    Conteudo := edtusculo.Text;
-    variavel := TEncoding.UTF8.GetBytes(Conteudo);
-    edtusculo.Text := LowerCase(Conteudo);
+  Conteudo := edtusculo.Text;
+  variavel := TEncoding.UTF8.GetBytes(Conteudo);
+  edtusculo.Text := LowerCase(Conteudo);
+end;
+
+procedure TForm1.Button2Click(Sender: TObject);
+var
+  TextoAumentado: string;
+begin
+  TextoAumentado := edtusculo.Text;
+  TextoAumentado := AumentaTexto(TextoAumentado);
+  edtusculo.Text := TextoAumentado;
 end;
 
 procedure TForm1.btnSaveClick(Sender: TObject);
@@ -107,25 +128,45 @@ Arq: TextFile;
 i : Integer;
 begin
   i := 1;
-  if SalvarArquivo.Execute then
-    if trim(SalvarArquivo.FileName) <> '' then
+  if sdgSalvarArquivo.Execute then
+    if trim(sdgSalvarArquivo.FileName) <> '' then
     begin
-      AssignFile(Arq,SalvarArquivo.FileName);
-      if FileExists(SalvarArquivo.FileName) then
+      AssignFile(Arq,sdgSalvarArquivo.FileName);
+      if FileExists(sdgSalvarArquivo.FileName) then
         Append(Arq)
       else
         Rewrite(Arq);
-
-
-      while not i = mmoRecebe.Lines.Count do
-      begin
-      Writeln(Arq,mmoRecebe.Lines.Strings[i]);
-      inc(i)
-      end;
-      btnSave.Enabled := false ;
-      CloseFile(Arq);
+        while not ( i = mmoRecebe.Lines.Count ) do
+        begin
+          Writeln(Arq,mmoRecebe.Lines.Strings[i]);
+          inc(i);
+        end;
+        System.Close(Arq);
     end;
+end;
 
+function TForm1.AumentaTexto(Str: string): string;
+var
+  i: integer;
+  esp: boolean;
+begin
+  str := LowerCase(Trim(Str));
+  for i := 1 to Length(str) do
+  begin
+    if i = 1 then
+      str[i] := UpCase(str[i])
+    else
+      begin
+        if i <> Length(str) then
+        begin
+          esp := (str[i] = ' ');
+
+        if esp then
+          str[i+1] := UpCase(str[i+1]);
+        end;
+      end;
+  end;
+  Result := Str;
 end;
 
 end.

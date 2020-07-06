@@ -1,10 +1,10 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Form1'
+  Caption = 'Exercicio Texto'
   ClientHeight = 569
-  ClientWidth = 444
-  Color = clBtnFace
+  ClientWidth = 454
+  Color = clAqua
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -57,14 +57,14 @@ object Form1: TForm1
     TabOrder = 4
     OnClick = btnMaiusculoClick
   end
-  object Button1: TButton
+  object btnMinusculo: TButton
     Left = 336
     Top = 444
     Width = 75
     Height = 25
     Caption = 'Minusculo'
     TabOrder = 5
-    OnClick = Button1Click
+    OnClick = btnMinusculoClick
   end
   object btnArquivo: TButton
     Left = 48
@@ -75,17 +75,17 @@ object Form1: TForm1
     TabOrder = 6
     OnClick = btnArquivoClick
   end
-  object btnSave: TButton
+  object btnSalvar: TButton
     Left = 48
     Top = 18
     Width = 97
     Height = 21
     Caption = 'SALVAR'
     TabOrder = 7
-    OnClick = btnSaveClick
+    OnClick = btnSalvarClick
   end
   object btnNovoForm: TButton
-    Left = 336
+    Left = 311
     Top = 528
     Width = 100
     Height = 33
@@ -93,24 +93,24 @@ object Form1: TForm1
     TabOrder = 8
     OnClick = btnNovoFormClick
   end
-  object Button2: TButton
+  object btnAumentaLetra: TButton
     Left = 48
     Top = 480
     Width = 145
     Height = 25
     Caption = 'Aumentar Primeira Letra'
     TabOrder = 9
-    OnClick = Button2Click
+    OnClick = btnAumentaLetraClick
   end
-  object AbrirPasta: TOpenTextFileDialog
+  object odgAbrirPasta: TOpenTextFileDialog
     Filter = '|*.txt'
     Options = [ofHideReadOnly, ofAllowMultiSelect, ofEnableSizing]
-    Left = 16
-    Top = 136
+    Left = 200
+    Top = 184
   end
-  object SalvarArquivo: TSaveDialog
+  object sdgSalvarArquivo: TSaveDialog
     Filter = 'arquivo.txt|*.txt'
-    Left = 16
-    Top = 88
+    Left = 200
+    Top = 128
   end
 end

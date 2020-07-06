@@ -18,17 +18,15 @@ object Form1: TForm1
     Top = 56
     Width = 361
     Height = 329
-    Lines.Strings = (
-      'mmoRecebe')
-    ReadOnly = True
+    Alignment = taCenter
     ScrollBars = ssVertical
     TabOrder = 0
   end
   object btnCarregar: TButton
-    Left = 96
-    Top = 8
-    Width = 169
-    Height = 42
+    Left = 151
+    Top = 18
+    Width = 97
+    Height = 21
     Caption = 'CARREGAR'
     TabOrder = 1
     OnClick = btnCarregarClick
@@ -44,7 +42,7 @@ object Form1: TForm1
   end
   object edtusculo: TEdit
     Left = 48
-    Top = 416
+    Top = 446
     Width = 201
     Height = 21
     TabOrder = 3
@@ -52,7 +50,7 @@ object Form1: TForm1
   end
   object btnMaiusculo: TButton
     Left = 255
-    Top = 414
+    Top = 444
     Width = 75
     Height = 25
     Caption = 'Maiusculo'
@@ -61,7 +59,7 @@ object Form1: TForm1
   end
   object Button1: TButton
     Left = 336
-    Top = 414
+    Top = 444
     Width = 75
     Height = 25
     Caption = 'Minusculo'
@@ -70,17 +68,49 @@ object Form1: TForm1
   end
   object btnArquivo: TButton
     Left = 48
-    Top = 456
+    Top = 391
     Width = 121
     Height = 25
     Caption = 'Tamanho do Arquivo'
     TabOrder = 6
     OnClick = btnArquivoClick
   end
+  object btnSave: TButton
+    Left = 48
+    Top = 18
+    Width = 97
+    Height = 21
+    Caption = 'SALVAR'
+    TabOrder = 7
+    OnClick = btnSaveClick
+  end
+  object btnNovoForm: TButton
+    Left = 336
+    Top = 528
+    Width = 100
+    Height = 33
+    Caption = 'Novo Form'
+    TabOrder = 8
+    OnClick = btnNovoFormClick
+  end
+  object Button2: TButton
+    Left = 48
+    Top = 480
+    Width = 145
+    Height = 25
+    Caption = 'Aumentar Primeira Letra'
+    TabOrder = 9
+    OnClick = Button2Click
+  end
   object AbrirPasta: TOpenTextFileDialog
     Filter = '|*.txt'
     Options = [ofHideReadOnly, ofAllowMultiSelect, ofEnableSizing]
-    Left = 64
-    Top = 8
+    Left = 16
+    Top = 136
+  end
+  object sdgSalvarArquivo: TSaveDialog
+    Filter = 'arquivo.txt|*.txt'
+    Left = 16
+    Top = 88
   end
 end
