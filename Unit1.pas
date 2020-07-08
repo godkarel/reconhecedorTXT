@@ -1,4 +1,4 @@
-unit Unit1;
+Ôªøunit Unit1;
 
 interface
 
@@ -20,6 +20,8 @@ type
     sdgSalvarArquivo: TSaveDialog;
     btnNovoForm: TButton;
     btnAumentaLetra: TButton;
+    btnUtf: TButton;
+    btnAnsi: TButton;
     procedure btnCarregarClick(Sender: TObject);
     procedure btnMaiusculoClick(Sender: TObject);
     procedure btnMinusculoClick(Sender: TObject);
@@ -28,6 +30,8 @@ type
     procedure btnNovoFormClick(Sender: TObject);
     function AumentarTexto(Str: string): string;
     procedure btnAumentaLetraClick(Sender: TObject);
+    procedure btnUtfClick(Sender: TObject);
+    procedure btnAnsiClick(Sender: TObject);
   private
     { Private declarations }
 
@@ -66,13 +70,21 @@ begin
             begin
               Linha := Arquivo[i];
               for j := 0 to Length(Linha) do
-                if Linha[j] in ['0'..'9', 'a' .. 'z', 'A' .. 'Z', '·', '‡', '„', '¡', '¿', '√', 'Ë', 'È', '…', '»',
-                'Ì', 'Ï', 'Õ', 'Ã', 'Û', 'Ú', 'ı', '”', '“', '’', '˙', '˘', '⁄', 'Ÿ', '‚', 'Í', 'Ó' ,'Ù', '˚', '¬', ' ', 'Œ', '‘' ,'€'] then
+                if Linha[j] in ['0'..'9', 'a' .. 'z', 'A' .. 'Z', '√°', '√†', '√£', '√Å', '√Ä', '√É', '√®', '√©', '√â', '√à',
+                '√≠', '√¨', '√ç', '√å', '√≥', '√≤', '√µ', '√ì', '√í', '√ï', '√∫', '√π', '√ö', '√ô', '√¢', '√™', '√Æ' ,'√¥', '√ª', '√Ç', '√ä', '√é', '√î' ,'√õ'] then
                   Inc(cont);
             end;
             edtNPalavras.Text := IntToStr(cont);
         end;
 
+end;
+
+procedure TForm1.btnAnsiClick(Sender: TObject);
+var
+  messageAnsi: AnsiString;
+begin
+  messageAnsi:= mmoRecebe.Text;
+  ShowMessage(messageAnsi);
 end;
 
 procedure TForm1.btnArquivoClick(Sender: TObject);
@@ -109,7 +121,6 @@ var
   variavel : TBytes ;
 begin
   Conteudo := edtusculo.Text;
-  variavel := TEncoding.UTF8.GetBytes(Conteudo);
   edtusculo.Text := LowerCase(Conteudo);
 end;
 
@@ -126,6 +137,7 @@ procedure TForm1.btnSalvarClick(Sender: TObject);
 var
 Arq: TextFile;
 i : Integer;
+TextoCod : string;
 begin
   i := 1;
   if sdgSalvarArquivo.Execute then
@@ -133,8 +145,11 @@ begin
     begin
       AssignFile(Arq,sdgSalvarArquivo.FileName);
       if FileExists(sdgSalvarArquivo.FileName) then
-        Append(Arq)
+
+        TextoCod := TEncoding.UTF8.GetString(TextoCod);
+        Append(Arq);
       else
+        TEncoding.UTF8.GetString(Arq);
         Rewrite(Arq);
         while not ( i = mmoRecebe.Lines.Count ) do
         begin
@@ -143,6 +158,15 @@ begin
         end;
         System.Close(Arq);
     end;
+end;
+
+procedure TForm1.btnUtfClick(Sender: TObject);
+var
+
+messageUnicode: UTF8String;
+begin
+  messageUnicode:= mmoRecebe.Text;
+  ShowMessage(messageUnicode)
 end;
 
 function TForm1.AumentarTexto(Str: string): string;

@@ -102,6 +102,24 @@ object Form1: TForm1
     TabOrder = 9
     OnClick = btnAumentaLetraClick
   end
+  object btnUtf: TButton
+    Left = 48
+    Top = 528
+    Width = 75
+    Height = 25
+    Caption = 'UTF8'
+    TabOrder = 10
+    OnClick = btnUtfClick
+  end
+  object btnAnsi: TButton
+    Left = 151
+    Top = 528
+    Width = 75
+    Height = 25
+    Caption = 'ANSI'
+    TabOrder = 11
+    OnClick = btnAnsiClick
+  end
   object odgAbrirPasta: TOpenTextFileDialog
     Filter = '|*.txt'
     Options = [ofHideReadOnly, ofAllowMultiSelect, ofEnableSizing]
