@@ -8,10 +8,13 @@ uses
 
 type
   TForm2 = class(TForm)
-    mmoSalva: TMemo;
-    btnSalva: TButton;
-    Save: TSaveDialog;
-    procedure btnSalvaClick(Sender: TObject);
+    btnCodificar: TButton;
+    edtCodificar: TEdit;
+    edtCodificado: TEdit;
+    btnDecodificar: TButton;
+    labCod: TLabel;
+    procedure btnCodificarClick(Sender: TObject);
+    procedure btnDecodificarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -20,17 +23,28 @@ type
 
 var
   Form2: TForm2;
-
+  TextoCodificado : string;
+  ByteCodificado : TBytes;
 implementation
 
 {$R *.dfm}
 
-procedure TForm2.btnSalvaClick(Sender: TObject);
+procedure TForm2.btnCodificarClick(Sender: TObject);
 begin
-  if Save.Execute then
-  begin
-    mmoSalva.Lines.SaveToFile(Save.FileName);
-  end;
+  TextoCodificado := edtCodificar.Text;
+  ByteCodificado := TEncoding.UTF8.GetBytes(TextoCodificado);
+  edtCodificado.text := IntToStr(SizeOf(ByteCodificado));
+  edtCodificar.Clear;
+  btnCodificar.Enabled := false;
+  btnDecodificar.Enabled := true;
+end;
+
+procedure TForm2.btnDecodificarClick(Sender: TObject);
+begin
+  edtCodificar.Text := TEncoding.UTF8.GetString(ByteCodificado);
+  edtCodificado.Clear;
+  btnCodificar.Enabled := true;
+  btnDecodificar.Enabled := false;
 end;
 
 end.

@@ -135,7 +135,7 @@ end;
 
 procedure TForm1.btnSalvarClick(Sender: TObject);
 var
-Arq: TextFile;
+Arq: Textfile;
 i : Integer;
 TextoCod : string;
 begin
@@ -145,11 +145,8 @@ begin
     begin
       AssignFile(Arq,sdgSalvarArquivo.FileName);
       if FileExists(sdgSalvarArquivo.FileName) then
-
-        TextoCod := TEncoding.UTF8.GetString(TextoCod);
-        Append(Arq);
+        Append(Arq)
       else
-        TEncoding.UTF8.GetString(Arq);
         Rewrite(Arq);
         while not ( i = mmoRecebe.Lines.Count ) do
         begin
