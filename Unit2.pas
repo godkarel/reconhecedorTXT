@@ -23,8 +23,9 @@ type
 
 var
   Form2: TForm2;
-  TextoCodificado : string;
-  ByteCodificado : TBytes;
+  TextoCodificado: String;
+  ByteCodificado: TBytes;
+
 implementation
 
 {$R *.dfm}
@@ -35,16 +36,16 @@ begin
   ByteCodificado := TEncoding.UTF8.GetBytes(TextoCodificado);
   edtCodificado.text := IntToStr(SizeOf(ByteCodificado));
   edtCodificar.Clear;
-  btnCodificar.Enabled := false;
-  btnDecodificar.Enabled := true;
+  btnCodificar.Enabled := False;
+  btnDecodificar.Enabled := True;
 end;
 
 procedure TForm2.btnDecodificarClick(Sender: TObject);
 begin
   edtCodificar.Text := TEncoding.UTF8.GetString(ByteCodificado);
   edtCodificado.Clear;
-  btnCodificar.Enabled := true;
-  btnDecodificar.Enabled := false;
+  btnCodificar.Enabled := True;
+  btnDecodificar.Enabled := False;
 end;
 
 end.

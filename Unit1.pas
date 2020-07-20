@@ -53,28 +53,31 @@ procedure TForm1.btnCarregarClick(Sender: TObject);
 var
   Arquivo: TStringList;
   Linha: String;
-  i, j, cont: integer;
+  i, j, Cont: Integer;
 
 
 begin
     Arquivo := TStringList.Create;
     cont:= 0;
-    if odgAbrirPasta.execute then
+    if odgAbrirPasta.Execute then
         begin
 
             mmoRecebe.Lines.Clear;
             mmoRecebe.Lines.LoadFromFile(odgAbrirPasta.FileName);
             Arquivo.LoadFromFile(odgAbrirPasta.FileName);
-            btnSalvar.Enabled := true;
+            btnSalvar.Enabled := True;
             for i := 0 to Arquivo.Count - 1 do
             begin
               Linha := Arquivo[i];
-              for j := 0 to Length(Linha) do
-                if Linha[j] in ['0'..'9', 'a' .. 'z', 'A' .. 'Z', 'á', 'à', 'ã', 'Á', 'À', 'Ã', 'è', 'é', 'É', 'È',
-                'í', 'ì', 'Í', 'Ì', 'ó', 'ò', 'õ', 'Ó', 'Ò', 'Õ', 'ú', 'ù', 'Ú', 'Ù', 'â', 'ê', 'î' ,'ô', 'û', 'Â', 'Ê', 'Î', 'Ô' ,'Û'] then
-                  Inc(cont);
+
+              for j := 0 to Length(Linha) - 1 do
+                if Linha.Chars[j] in ['0'..'9', 'a' .. 'z', 'A' .. 'Z', 'á', 'à', 'ã',
+                                      'Á', 'À', 'Ã', 'è', 'é', 'É', 'È', 'í', 'ì', 'Í',
+                                      'Ì', 'ó', 'ò', 'õ', 'Ó', 'Ò', 'Õ', 'ú', 'ù', 'Ú',
+                                      'Ù', 'â', 'ê', 'î' ,'ô', 'û', 'Â', 'Ê', 'Î', 'Ô', 'Û'] then
+                  Inc(Cont);
             end;
-            edtNPalavras.Text := IntToStr(cont);
+            edtNPalavras.Text := IntToStr(Cont);
         end;
 
 end;
@@ -112,13 +115,13 @@ end;
 
 procedure TForm1.btnNovoFormClick(Sender: TObject);
 begin
-  Form2.show
+  Form2.Show
 end;
 
 procedure TForm1.btnMinusculoClick(Sender: TObject);
 var
   Conteudo : String;
-  variavel : TBytes ;
+  Variavel : TBytes ;
 begin
   Conteudo := edtusculo.Text;
   edtusculo.Text := LowerCase(Conteudo);
@@ -126,7 +129,7 @@ end;
 
 procedure TForm1.btnAumentaLetraClick(Sender: TObject);
 var
-  TextoAumentado: string;
+  TextoAumentado: String;
 begin
   TextoAumentado := edtusculo.Text;
   TextoAumentado := AumentarTexto(TextoAumentado);
@@ -137,7 +140,7 @@ procedure TForm1.btnSalvarClick(Sender: TObject);
 var
 Arq: Textfile;
 i : Integer;
-TextoCod : string;
+TextoCod : String;
 begin
   i := 1;
   if sdgSalvarArquivo.Execute then
@@ -166,24 +169,24 @@ begin
   ShowMessage(messageUnicode)
 end;
 
-function TForm1.AumentarTexto(Str: string): string;
+function TForm1.AumentarTexto(Str: String): String;
 var
-  i: integer;
-  esp: boolean;
+  i: Integer;
+  Esp: Boolean;
 begin
-  str := LowerCase(Trim(Str));
-  for i := 1 to Length(str) do
+  Str := LowerCase(Trim(Str));
+  for i := 1 to Length(Str) do
   begin
     if i = 1 then
-      str[i] := UpCase(str[i])
+      Str[i] := UpCase(Str[i])
     else
       begin
-        if i <> Length(str) then
+        if i <> Length(Str) then
         begin
-          esp := (str[i] = ' ');
+          Esp := (Str[i] = ' ');
 
         if esp then
-          str[i+1] := UpCase(str[i+1]);
+          Str[i+1] := UpCase(Str[i+1]);
         end;
       end;
   end;
