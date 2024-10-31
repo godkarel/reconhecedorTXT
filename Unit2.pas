@@ -16,36 +16,55 @@ type
     procedure btnCodificarClick(Sender: TObject);
     procedure btnDecodificarClick(Sender: TObject);
   private
-    { Private declarations }
+    procedure ToggleButtons(IsEncoded: Boolean);
   public
-    { Public declarations }
   end;
 
 var
   Form2: TForm2;
-  TextoCodificado: String;
-  ByteCodificado: TBytes;
 
 implementation
 
 {$R *.dfm}
 
+procedure TForm2.ToggleButtons(IsEncoded: Boolean);
+begin
+  btnCodificar.Enabled := not IsEncoded;
+  btnDecodificar.Enabled := IsEncoded;
+end;
+
 procedure TForm2.btnCodificarClick(Sender: TObject);
+var
+  TextoCodificado: String;
+  ByteCodificado: TBytes;
 begin
   TextoCodificado := edtCodificar.Text;
+  if TextoCodificado.IsEmpty then
+  begin
+    ShowMessage('Por favor, insira um texto para codificar.');
+    Exit;
+  end;
+
   ByteCodificado := TEncoding.UTF8.GetBytes(TextoCodificado);
-  edtCodificado.text := IntToStr(SizeOf(ByteCodificado));
+  edtCodificado.Text := TEncoding.UTF8.GetString(ByteCodificado);
   edtCodificar.Clear;
-  btnCodificar.Enabled := False;
-  btnDecodificar.Enabled := True;
+  ToggleButtons(True);
 end;
 
 procedure TForm2.btnDecodificarClick(Sender: TObject);
+var
+  TextoCodificado: TBytes;
 begin
-  edtCodificar.Text := TEncoding.UTF8.GetString(ByteCodificado);
+  if edtCodificado.Text.IsEmpty then
+  begin
+    ShowMessage('Por favor, insira um texto codificado para decodificar.');
+    Exit;
+  end;
+
+  TextoCodificado := TEncoding.UTF8.GetBytes(edtCodificado.Text);
+  edtCodificar.Text := TEncoding.UTF8.GetString(TextoCodificado);
   edtCodificado.Clear;
-  btnCodificar.Enabled := True;
-  btnDecodificar.Enabled := False;
+  ToggleButtons(False);
 end;
 
 end.
